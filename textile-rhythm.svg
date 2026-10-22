@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="32" viewBox="0 0 168 32" fill="none">
+  <!-- Original geometry interpreting the supplied textile's banded rhythm; no claimed traditional symbol or provenance. -->
+  <g stroke="#eeeadd" stroke-width=".8" opacity=".8">
+    <path d="M0 2h168M0 30h168M42 2v28M84 2v28M126 2v28" opacity=".5"/>
+    <path d="m21 4 12 12-12 12L9 16 21 4Zm0 6 6 6-6 6-6-6 6-6Zm0 4 2 2-2 2-2-2 2-2Z"/>
+    <path d="M47 6h32v20H47V6Zm0 0 32 20m0-20L47 26M63 6v20M47 16h32"/>
+    <path d="m105 4 12 12-12 12-12-12 12-12Zm0 6 6 6-6 6-6-6 6-6Zm0 4 2 2-2 2-2-2 2-2Z"/>
+    <path d="m132 25 15-19m-9 20 15-20m-9 20 15-20m-9 20 12-15M132 6h30v20h-30V6Z"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+---
+import { about } from '../data/profile';
+const links = about.socialLinks.filter(link => link.url && /^(https:\/\/|mailto:)/.test(link.url));
+---
+<ul class="about-socials" aria-label="Academic and professional profiles">
+  {links.map(link => (
+    <li>
+      <a href={link.url!} aria-label={link.label} title={link.label}>
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          {link.platform === 'email' && <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 6 9 7 9-7" /></>}
+          {link.platform === 'linkedin' && <><rect x="3" y="3" width="18" height="18" rx="3" /><path d="M7 10v7m4 0v-7m0 3c0-4 6-4 6 0v4" /><circle cx="7" cy="7" r=".7" fill="currentColor" stroke="none" /></>}
+          {link.platform === 'github' && <path d="M8 21v-3c-4 1-4-2-5-3m13 6v-4c0-1-.4-1.6-1-2 3-.3 6-1.5 6-6 0-1.3-.5-2.5-1.5-3.4.1-.9.1-2-.5-3.1-1.7-.1-3.2.8-4 1.3a12 12 0 0 0-6 0C8.2 3.3 6.7 2.4 5 2.5c-.6 1.1-.6 2.2-.5 3.1C3.5 6.5 3 7.7 3 9c0 4.5 3 5.7 6 6-.6.4-1 1-1 2" />}
+          {link.platform === 'scholar' && <><path d="m2 9 10-6 10 6-10 6L2 9Zm4 3v5c4 3 8 3 12 0v-5m4-3v8" /></>}
+          {link.platform === 'orcid' && <><circle cx="12" cy="12" r="10" /><path d="M7 10v7m4-10v10h2a5 5 0 0 0 0-10h-2Z" /><circle cx="7" cy="7" r=".8" fill="currentColor" stroke="none" /></>}
+        </svg>
+      </a>
+    </li>
+  ))}
+</ul>

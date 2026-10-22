@@ -1,0 +1,246 @@
+/* Homepage-only composition: shared editorial pages retain their existing styles. */
+.about-page {
+  --about-indigo: #343c68;
+  --about-surface: #f4f2ed;
+  --about-tint: #eaebf1;
+  padding-top: 38px;
+  padding-bottom: 72px;
+}
+:root[data-theme='dark'] .about-page {
+  --about-indigo: #aab5e3;
+  --about-surface: #202536;
+  --about-tint: #272e46;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .about-page {
+    --about-indigo: #aab5e3;
+    --about-surface: #202536;
+    --about-tint: #272e46;
+  }
+}
+.about-opening {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  overflow: hidden;
+  background: linear-gradient(110deg, var(--about-tint), var(--about-surface) 42%, var(--paper) 100%);
+}
+.about-identity {
+  padding: 32px 24px;
+  text-align: center;
+  align-self: center;
+}
+.about-portrait {
+  width: 184px;
+  height: 184px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--paper);
+  outline: 1px solid var(--line);
+  display: block;
+  margin: 0 auto 24px;
+}
+.about-identity h1 {
+  font-size: 2.1rem;
+  line-height: 1.1;
+  margin: 0 auto 8px;
+  max-width: 245px;
+  text-wrap: balance;
+}
+.about-pronouns {
+  margin: 0 0 15px;
+  font-size: .76rem;
+  color: var(--muted);
+}
+.about-role {
+  font-size: .86rem;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.about-affiliation {
+  font-size: .78rem;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+.about-affiliation span { color: var(--muted); }
+.about-socials {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.about-socials a {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+}
+.about-socials a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.about-introduction {
+  padding: 38px 36px 34px 26px;
+  align-self: center;
+}
+.about-introduction .eyebrow {
+  font-size: .62rem;
+  letter-spacing: .13em;
+  margin-bottom: 18px;
+}
+.about-introduction h2 {
+  font-size: clamp(2rem, 3.1vw, 2.55rem);
+  line-height: 1.15;
+  max-width: 650px;
+  margin: 0 0 25px;
+  text-wrap: balance;
+  letter-spacing: -.025em;
+}
+.about-biography {
+  font-size: .89rem;
+  line-height: 1.85;
+  max-width: 65ch;
+}
+.about-biography p { margin-bottom: 17px; }
+.about-biography p:last-child { margin-bottom: 0; }
+.about-foundations {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: 40px;
+  margin-top: 34px;
+}
+.about-foundations h2 {
+  font-size: 1.8rem;
+  margin: 0 0 20px;
+}
+.about-education-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+.about-degree {
+  padding: 18px;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 45%, transparent);
+  border-radius: 4px;
+}
+.about-degree-heading {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 9px;
+}
+.about-degree h3 {
+  font-size: 1.15rem;
+  line-height: 1.25;
+  margin: 0;
+  letter-spacing: -.01em;
+}
+.about-degree p {
+  font-size: .71rem;
+  line-height: 1.65;
+  margin: 0;
+  color: var(--muted);
+}
+.about-interests { border-left: 1px solid var(--line); padding-left: 30px; }
+.about-interest-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: 10px 8px;
+  padding: 0;
+  margin: 0;
+}
+.about-interest-tags li {
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 7px 12px;
+  font-size: .75rem;
+  line-height: 1.6;
+  color: var(--ink);
+  background: color-mix(in srgb, var(--about-tint) 40%, var(--paper));
+}
+.about-research {
+  border-top: 1px solid var(--line);
+  margin-top: 36px;
+  padding-top: 30px;
+}
+.about-research > h2 { font-size: 1.8rem; margin: 0 0 22px; }
+.research-feature-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+  box-shadow: 0 6px 22px rgb(20 25 45 / .045);
+  transition: border-color .18s, box-shadow .18s;
+}
+.research-feature-card:hover, .research-feature-card:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 6px 22px rgb(20 25 45 / .07);
+}
+.research-feature-content { padding: 34px 38px; }
+.research-feature-category {
+  display: inline-block;
+  border-radius: 20px;
+  background: var(--about-tint);
+  color: var(--about-indigo);
+  font-size: .66rem;
+  font-weight: 500;
+  padding: 4px 11px;
+  margin-bottom: 16px;
+}
+.research-feature-content h3 { font-size: 1.85rem; line-height: 1.2; margin: 0 0 18px; text-wrap: balance; max-width: 760px; }
+.research-feature-content h3 a { display: block; text-decoration: none; }
+.research-feature-content h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+.research-feature-summary { font-size: .95rem; line-height: 1.85; margin-bottom: 0; max-width: 80ch; }
+.research-feature-content .text-link { margin-top: 22px; }
+@media (max-width: 1000px) {
+  .about-opening { grid-template-columns: 235px minmax(0, 1fr); }
+  .about-identity { padding: 30px 18px; }
+  .about-portrait { width: 168px; height: 168px; }
+  .about-identity h1 { font-size: 1.95rem; }
+  .about-introduction { padding: 30px 26px 30px 16px; }
+  .about-introduction h2 { font-size: 2.05rem; }
+  .about-biography { font-size: .85rem; }
+  .about-foundations { gap: 26px; grid-template-columns: 1.6fr 1fr; }
+  .about-interests { padding-left: 22px; }
+}
+@media (max-width: 760px) {
+  .about-page { padding-top: 24px; padding-bottom: 50px; }
+  .about-opening { grid-template-columns: 1fr; }
+  .about-identity { padding: 28px 24px 24px; }
+  .about-portrait { width: 154px; height: 154px; margin-bottom: 20px; }
+  .about-identity h1 { font-size: 2rem; max-width: 290px; }
+  .about-pronouns { margin-bottom: 12px; }
+  .about-affiliation { margin-bottom: 14px; }
+  .about-introduction { margin: 0 24px; padding: 26px 0 28px; border-top: 1px solid var(--line); }
+  .about-introduction .eyebrow { font-size: .58rem; }
+  .about-introduction h2 { font-size: clamp(1.75rem, 5vw, 2.15rem); line-height: 1.2; margin-bottom: 22px; }
+  .about-biography { font-size: .88rem; line-height: 1.85; }
+  .about-foundations { grid-template-columns: 1fr; gap: 28px; margin-top: 28px; }
+  .about-interests { border: 0; padding: 0; }
+  .about-foundations h2 { font-size: 1.7rem; margin-bottom: 17px; }
+  .about-research { margin-top: 30px; padding-top: 26px; }
+  .research-feature-content { padding: 26px; }
+  .research-feature-content h3 { font-size: 1.65rem; }
+}
+@media (max-width: 440px) {
+  .about-page { padding-left: 18px; padding-right: 18px; }
+  .about-education-grid { grid-template-columns: 1fr; gap: 10px; }
+  .about-degree { padding: 17px 18px; }
+  .about-degree h3 { font-size: 1.2rem; }
+  .about-degree-heading { margin-bottom: 7px; }
+  .about-introduction { margin-left: 20px; margin-right: 20px; }
+}

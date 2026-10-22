@@ -1,0 +1,111 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/newsreader';
+import '@fontsource-variable/dm-sans';
+import 'katex/dist/katex.min.css';
+import { profile } from '../data/profile';
+import { url } from '../lib/paths';
+interface Props { title?: string; description?: string; }
+const { title, description = profile.description } = Astro.props;
+const pageTitle = title ? `${title} | ${profile.siteTitle}` : profile.siteTitle;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const nav = [['About', ''], ['Papers', 'papers/'], ['Research Journal', 'journal/'], ['Contact', 'contact/']];
+---
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title><meta name="description" content={description} />
+    <link rel="canonical" href={canonical} /><link rel="icon" type="image/svg+xml" href={url('favicon.svg')} />
+    <meta property="og:title" content={pageTitle} /><meta property="og:description" content={description} />
+    <meta property="og:type" content="website" /><meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(url('social-card.png'), Astro.site)} />
+    <meta property="og:image:alt" content="S.W. Alake — medical image analysis, variation and deep learning" />
+    <meta name="color-scheme" content="light dark" />
+    <script is:inline>
+      try { const saved = localStorage.getItem('theme'); document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <div class="site-header-band" style={`--header-pattern: url('${url('images/textile-rhythm.svg')}')`}>
+    <header class="header">
+      <a class="brand" href={url()} aria-label="S.W. Alake | Researcher — About"><span>S.W. Alake</span><span class="brand-rule"></span><small>Researcher</small></a>
+      <nav aria-label="Primary navigation">{nav.map(([label, path]) => <a href={url(path)} aria-current={Astro.url.pathname === url(path) ? 'page' : undefined}>{label}</a>)}</nav>
+      <button class="theme-toggle" aria-label="Switch to dark mode" title="Change colour theme"><span aria-hidden="true">◐</span></button>
+    </header>
+    </div>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="footer"><a href={url()}>Suliat Wuraola Alake</a><span class="footer-signature">Somewhere between curiosity, questions, and understanding.</span><span>© {new Date().getFullYear()}</span></footer>
+    <script>
+      const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+      const update = () => button?.setAttribute('aria-label', `Switch to ${document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'} mode`);
+      update();
+      button?.addEventListener('click', () => { const theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = theme; try { localStorage.setItem('theme', theme); } catch {} update(); });
+      matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => { try { if (localStorage.getItem('theme')) return; } catch {} document.documentElement.dataset.theme = event.matches ? 'dark' : 'light'; update(); });
+    </script>
+  </body>
+</html>
+
+<style>
+  .site-header-band {
+    --ink: #faf8f2;
+    --body: #ece9df;
+    --accent: #dfc38f;
+    --line: #606882;
+    --wash: #353e65;
+    --header-background: #252d50;
+    position: relative;
+    isolation: isolate;
+    border-bottom: 1px solid var(--line);
+    background: var(--header-background);
+    color: var(--body);
+  }
+  .site-header-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--ink);
+    mask-image: var(--header-pattern);
+    mask-repeat: repeat;
+    mask-size: 336px 64px;
+    mask-position: center;
+    opacity: .22;
+  }
+  :global(:root[data-theme='dark']) .site-header-band {
+    --ink: #292d57;
+    --body: #484956;
+    --accent: #6b4d24;
+    --line: #cbc8c0;
+    --wash: #e7e6e0;
+    --header-background: #faf8f2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme])) .site-header-band {
+      --ink: #292d57;
+      --body: #484956;
+      --accent: #6b4d24;
+      --line: #cbc8c0;
+      --wash: #e7e6e0;
+      --header-background: #faf8f2;
+    }
+  }
+  .site-header-band .header { border-bottom: 0; }
+  .footer .footer-signature {
+    font-family: 'Newsreader Variable', Georgia, serif;
+    font-size: .85rem;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  @media (max-width: 700px) {
+    .footer .footer-signature {
+      display: block;
+      flex-basis: 100%;
+      order: 3;
+      margin-top: 5px;
+      max-width: 34ch;
+    }
+  }
+</style>
