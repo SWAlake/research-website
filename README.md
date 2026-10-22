@@ -17,7 +17,7 @@ Open the printed local URL with `/research-website/` appended. For production ve
 
 Edit `src/data/profile.ts` for personal information. The `profile` object contains shared identity and contact details; the `about` object contains the homepage role, pronouns, headline, approved biography, completed education and interests. Biography paragraphs are separate quoted strings. Education dates are deliberately omitted; current PhD status appears in the biography rather than in Education. The Contact page retains its original role wording.
 
-In `about.socialLinks`, replace `url: null` with each owner-confirmed HTTPS profile URL to reveal its circular icon. Email is configured; LinkedIn, GitHub, Google Scholar and ORCID await confirmed URLs. Unconfigured icons are omitted rather than rendered as inactive buttons.
+Edit `professionalLinks` at the top of `src/data/profile.ts` to update the confirmed LinkedIn, GitHub, Google Scholar and ORCID URLs. This single list supplies both the homepage circular icons and Contact page links. Email comes from `profile.email`. Include only owner-confirmed HTTPS URLs; unconfigured homepage icons remain hidden.
 
 The pattern is original SVG geometry in `public/images/textile-rhythm.svg`, interpreting the supplied indigo-and-ivory textile's banded rhythm, nested diamonds and diagonal grids without claiming a particular origin or traditional symbol. It appears across the shared navigation band, styled in `src/layouts/Layout.astro`. The header uses indigo with ivory text in light mode, and ivory with indigo text in dark mode. The SVG serves as a mask so its lines follow the header colour treatment. Homepage layout and research-card styles live in `src/styles/about.css`; the textile photograph itself is not published.
 
