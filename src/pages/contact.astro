@@ -2,4 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import { profile } from '../data/profile';
 ---
+<style>
+  .contact .profile-links {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin-top: 24px;
+  }
+</style>
 <Layout title="Contact"><div class="shell page contact"><p class="eyebrow">Conversation / Collaboration</p><h1>Contact</h1><p class="lede">Good research begins<br /><em>with a conversation.</em></p><p class="page-intro">I welcome relevant academic enquiries and conversations about medical image analysis, observer variability and research collaboration.</p><a class="email" href={`mailto:${profile.email}`}>{profile.email} <span aria-hidden="true">↗</span></a><div class="contact-affiliation"><h2>{profile.name}</h2><p>{profile.role}<br />{profile.group}<br />{profile.school}<br />{profile.institution}, Australia</p></div>{profile.links.length > 0 && <ul class="profile-links">{profile.links.map(link => <li><a href={link.url}>{link.label}</a></li>)}</ul>}</div></Layout>
