@@ -2,6 +2,9 @@
 import Layout from '../../layouts/Layout.astro';
 import PaperCard from '../../components/PaperCard.astro';
 import { getCollection } from 'astro:content';
-const papers = (await getCollection('papers', ({ data }) => !data.draft)).sort((a,b) => (b.data.year ?? 0) - (a.data.year ?? 0));
+// Keep undated current writing first, then list dated outputs newest to oldest.
+const papers = (await getCollection('papers', ({ data }) => !data.draft)).sort((a,b) =>
+  (b.data.year ?? Number.MAX_SAFE_INTEGER) - (a.data.year ?? Number.MAX_SAFE_INTEGER)
+  || (b.data.month ?? 0) - (a.data.month ?? 0));
 ---
 <Layout title="Papers" description="Research briefs, working papers and scholarly writing by Suliat Wuraola Alake."><div class="shell page"><p class="eyebrow">Writing / Research outputs</p><h1>Papers</h1><p class="lede">Ideas taking shape.<br /><em>Research at each stage.</em></p><p class="page-intro">A growing collection of research briefs and scholarly writing. Each entry is labelled by document type and status, with approved documents shared when ready.</p><div class="paper-list">{papers.map(paper => <PaperCard paper={paper} />)}{papers.length === 0 && <div class="empty"><h2>A collection in the making</h2><p>Research writing will appear here when ready to share.</p></div>}</div><p class="small-note">In-preparation work is not a published or peer-reviewed research output.</p></div></Layout>
