@@ -2,7 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { url, materialUrl } from '../../lib/paths';
-export async function getStaticPaths() { return (await getCollection('papers', ({data}) => !data.draft)).map(paper => ({ params: { id: paper.id }, props: { paper } })); }
+export async function getStaticPaths() { return (await getCollection('papers', ({data}) => !data.draft && !data.externalOnly)).map(paper => ({ params: { id: paper.id }, props: { paper } })); }
 const { paper } = Astro.props;
 const { Content } = await render(paper);
 const related = (await getCollection('journal', ({data}) => !data.draft)).filter(item => paper.data.relatedJournal.includes(item.id));
