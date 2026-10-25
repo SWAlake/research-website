@@ -31,10 +31,11 @@ for (const collection of ['journal','papers']) {
     const source = await readFile(file,'utf8');
     const frontmatter = source.split('---')[1] ?? '';
     const draft = /^draft:\s*true\s*$/m.test(frontmatter) || (collection === 'journal' && !/^draft:/m.test(frontmatter));
-    if (!draft) continue;
+    const externalOnly = collection === 'papers' && /^externalOnly:\s*true\s*$/m.test(frontmatter);
+    if (!draft && !externalOnly) continue;
     const slug = file.split(/[\\/]/).pop().replace(/\.(md|mdx)$/,'');
-    assert(!(await stat(join(root,collection,slug,'index.html')).catch(()=>false)),`Draft route exists: ${slug}`);
-    assert(!sitemap.includes(`/${collection}/${slug}/`),`Draft sitemap entry: ${slug}`);
+    assert(!(await stat(join(root,collection,slug,'index.html')).catch(()=>false)),`Draft or external-only route exists: ${slug}`);
+    assert(!sitemap.includes(`/${collection}/${slug}/`),`Draft or external-only sitemap entry: ${slug}`);
   }
 }
 console.log(`Verified ${html.length} HTML pages: local URLs, base path, sitemap and draft exclusion.`);

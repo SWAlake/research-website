@@ -1,14 +1,20 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import { url } from '../lib/paths';
+import { paperUrl } from '../lib/paths';
 interface Props { paper: CollectionEntry<'papers'>; }
 const { paper } = Astro.props;
+const destination = paperUrl(paper);
+const dateLabel = paper.data.year
+  ? (paper.data.month ? new Intl.DateTimeFormat('en-AU', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(paper.data.year, paper.data.month - 1, 1))) : String(paper.data.year))
+  : undefined;
+const actionLabel = paper.data.externalOnly ? (paper.data.type === "Master's thesis" ? 'Read thesis at WSU' : 'View at source') : 'View details';
 ---
 <article class="paper-card">
-  <div class="eyebrow">{paper.data.type}{paper.data.year && <><span class="dot">·</span>{paper.data.year}</>}</div>
-  <h2><a href={url(`papers/${paper.id}/`)}>{paper.data.title}</a></h2>
+  <div class="eyebrow">{paper.data.type}{dateLabel && <><span class="dot">·</span>{dateLabel}</>}</div>
+  <h2><a href={destination}>{paper.data.title}</a></h2>
   {paper.data.authors.length > 0 && <p>{paper.data.authors.join(', ')}</p>}
   <span class="status">{paper.data.status}</span>
   {paper.data.summary && <p>{paper.data.summary}</p>}
-  <a class="text-link" href={url(`papers/${paper.id}/`)}>View details <span aria-hidden="true">↗</span></a>
+  <a class="text-link" href={destination}>{actionLabel} <span aria-hidden="true">↗</span></a>
+  {paper.data.externalOnly && paper.data.doi && <a class="text-link" href={paper.data.doi}>DOI / university record <span aria-hidden="true">↗</span></a>}
 </article>

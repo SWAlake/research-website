@@ -33,7 +33,9 @@ Replace `public/images/portrait.webp` with a square, approximately 800 × 800 pi
 
 Copy `templates/paper.md` into `src/content/papers/descriptive-short-name.md`. The filename determines the URL. Metadata sits between `---` lines; Markdown below supplies approved details.
 
-Supported types: Research brief, Working paper, Poster companion paper, Conference paper, Preprint — not peer reviewed, Peer-reviewed journal article, Other scholarly output. Status: In Preparation, Submitted, Accepted or Published. Never infer peer review from status alone. Supply authors and year only when confirmed.
+Supported types: Master's thesis, Research brief, Working paper, Poster companion paper, Conference paper, Preprint — not peer reviewed, Peer-reviewed journal article, Other scholarly output. Status: In Preparation, Submitted, Accepted or Published. Never infer peer review from status alone. Supply authors and year only when confirmed. An optional numeric `month` (1–12) displays the month alongside the year without inventing a day.
+
+For a writing entry hosted elsewhere, set `externalOnly: true` and `externalUrl` to its confirmed HTTPS destination. Its title and main action link go straight to that source; no local detail page or sitemap entry is created. A `doi` supplies an additional DOI link. Do not upload the document or set `pdf` for these entries. The Master's thesis entry is an example: it links to WSU's PDF and DOI record while keeping the document off this site. Its Published status means the thesis is publicly available; its type remains Master's thesis, not a peer-reviewed journal article.
 
 Optional fields: `summary`, `authors`, `year`, `doi` (a full https://doi.org/ URL), `externalUrl`, `materials`, `relatedJournal`. Related entries use filenames without extensions.
 
