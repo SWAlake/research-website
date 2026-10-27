@@ -4,7 +4,7 @@ authors: ['Wura Alake']
 year: 2026
 month: 10
 type: Research brief
-status: In Preparation
+status: Published
 summary: 'A scientific perspective on observer variability, geometric robustness and clinically relevant evaluation in breast MRI segmentation, informed by completed Master of Research findings and ongoing and proposed PhD investigations.'
 draft: false
 ---
