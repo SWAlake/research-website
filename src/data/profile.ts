@@ -20,9 +20,9 @@ export const about = {
   role: 'Early-career researcher',
   pronouns: '(She/Her)',
   headline: 'Breaking boundaries between medical imaging, oncology, and deep learning.',
-  description: 'Suliat Wuraola Alake is a Nigerian-Australian early-career researcher and PhD candidate working at the intersection of medical imaging, deep learning and oncology.',
+  description: 'Suliat Wuraola Alake is a Nigerian-Australian early-career researcher and governance & compliance officer at Western Sydney University. Her research sits at the intersection of medical image analysis, deep learning, oncology, and the interpretation of anatomical variation.',
   biography: [
-    'Suliat Wuraola Alake is a Nigerian-Australian early-career researcher and PhD candidate at Western Sydney University. Her research sits at the intersection of medical image analysis, deep learning, oncology, and the interpretation of anatomical variation.',
+    'Suliat Wuraola Alake is a Nigerian-Australian early-career researcher and governance & compliance officer at Western Sydney University. Her research sits at the intersection of medical image analysis, deep learning, oncology, and the interpretation of anatomical variation.',
     'With an interdisciplinary background spanning anatomy and physiology, research, and creative leadership, she is interested in how deep learning-driven innovations can support more robust, precise, and clinically reliable approaches to MRI-guided radiotherapy, with the long-term goal of improving patient outcomes and reducing treatment-related morbidity.'
   ],
   education: [
